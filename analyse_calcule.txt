@@ -1,0 +1,174 @@
+1er tableau : (done)
+
+3 valeurs importantes à sortir : 
+- L.S.I
+- C.P.I
+- R.S.I
+
+
+calcule pour L.S.I : (done)
+
+1.05*(D4+(-3.24*(EXP(-(((D8*1.8)+32)/191))))+(-((LOG(D5*0.7))/10.7))+(0.94*(LOG(D7)))+(LOG(D6))-9.4)
+
+D4 : pH -> entrée
+D8 : skin temperature -> entrée
+D5 : conductivity -> entrée
+D7 : M Alkalinity -> entrée
+D6 : Ca Hardness -> entrée
+
+calcule pour C.P.I : (done)
+
+(D4-F14)
+
+D4 : pH -> déjà implémenté
+F14 : (PUISSANCE(10,((C14+23.026)/48.246))) -> puissance(base,exposant)
+	-> C14 : (D14+E14-((D8-40)/40))
+		-> D14 : (15-(3*(LOG(D6))))
+			-> D6 : Ca Hardness <- déjà implémenté
+		
+		-> E14 : (10-(2.018*(LOG(D9))))
+			-> D9 : Ortho-phosphate -> entrée
+		-> D8 : skin temperature <- déjà implémenté
+
+calcule pour R.S.I : (done)
+
+(2*B14)-D4
+
+B14 : (D4-G11)
+	-> D4 : pH <- déjà implémenté
+	-> G11 : L.S.I <- déjà implémenté
+
+D4 : pH <- déjà implémenté
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+2e tableau : (done)
+
+TAC < 100 : 1.75*LOG(D7)+4.5
+	-> D7 : M Alkalinity <- déjà implémenté
+
+TAC > 100 : 1.285*LOG(D7)+5.35
+	-> D7 : M Alkalinity <- déjà implémenté
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+3e tableau :
+
+C17 : T° -> entrée
+
+C18 : ABS -> entrée
+
+C19 : STP : ARRONDI(((3.4533-0.0913*(C17*1.8+32))+((-19.4327+0.2068*(C17*1.8+32))*C18/1000)+((6.1718+0.3516*(C17*1.8+32))*(C18/1000)*(C18/1000))),1)
+
+		-> C17 : T° <- déjà implémenté
+
+		-> C18 : ABS <- déjà implémenté
+
+trigger pour la C17 (T°) : 
+
+T° < 15.6 ou T° > 26.6 -> popup "T° doit être comprise entre 15.6 et 26.6"
+
+trigger pour la C18 (ABS) :
+
+ABS > 851 -> popup "ABS doit être inférieur à 851"
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+4e tableau :
+
+C24 : ml -> entrée
+C25 : tare -> entrée
+C26 : poids -> entrée
+
+C27 : MES : (C26-C25)*1000000/C24
+
+		-> C24 : ml <- déjà implémenté
+		-> C25 : tare <- déjà implémenté
+		-> C26 : poids <- déjà implémenté
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Analyse des variables à implémenter :
+
+- pH
+- skin temperature
+- conductivity
+- M Alkalinity
+- Ca Hardness
+- Ortho-phosphate
+- TAC
+- T°
+- ABS
+- ml
+- tare
+- poids
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Analyse des triggers à implémenter :
+
+- T° < 15.6 ou T° > 26.6 -> popup "T° doit être comprise entre 15.6 et 26.6"
+- ABS > 851 -> popup "ABS doit être inférieur à 851"
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Analyse des sorties à implémenter :
+
+- L.S.I
+- C.P.I
+- R.S.I
+- TAC
+- STP
+- MES
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Analyse des formules à implémenter avec les bonnes variables d'entrée :
+
+
+- L.S.I : 1.05*(D4+(-3.24*(EXP(-(((D8*1.8)+32)/191))))+(-((LOG(D5*0.7))/10.7))+(0.94*(LOG(D7)))+(LOG(D6))-9.4)
+	
+	-> D4 : pH
+	-> D8 : skin temperature
+	-> D5 : conductivity
+	-> D7 : M Alkalinity
+	-> D6 : Ca Hardness
+
+- C.P.I : (D4-F14)
+
+	-> D4 : pH
+	-> F14 : (PUISSANCE(10,((C14+23.026)/48.246)))
+		-> C14 : (D14+E14-((D8-40)/40))
+			-> D14 : (15-(3*(LOG(D6))))
+				-> D6 : Ca Hardness
+			-> E14 : (10-(2.018*(LOG(D9))))
+				-> D9 : Ortho-phosphate
+		-> D8 : skin temperature
+
+- R.S.I : (2*B14)-D4
+
+	-> B14 : (D4-G11)
+		-> D4 : pH
+		-> G11 : L.S.I
+
+- TAC < 100 : 1.75*LOG(D7)+4.5
+
+	-> D7 : M Alkalinity
+
+- TAC > 100 : 1.285*LOG(D7)+5.35
+
+	-> D7 : M Alkalinity
+
+- STP : ARRONDI(((3.4533-0.0913*(C17*1.8+32))+((-19.4327+0.2068*(C17*1.8+32))*C18/1000)+((6.1718+0.3516*(C17*1.8+32))*(C18/1000)*(C18/1000))),1)
+
+	-> C17 : T°
+	-> C18 : ABS
+
+- MES : (C26-C25)*1000000/C24
+
+	-> C24 : ml
+	-> C25 : tare
+	-> C26 : poids
+
+--------------------------------------------------------------------------------------------------------------------------------
