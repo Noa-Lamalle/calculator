@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else
         {
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(2)').style.backgroundColor = "white";
+            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(2)').style.backgroundColor = "green";
         }
 
         if(valeursEntrees.ABS[0] > 851)
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else
         {
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(2)').style.backgroundColor = "white";
+            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(2)').style.backgroundColor = "green";
         }
         
 
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else
         {
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(3)').style.backgroundColor = "white";
+            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(3)').style.backgroundColor = "green";
         }
 
         if(valeursEntrees.ABS[1] > 851)
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else
         {
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(3)').style.backgroundColor = "white";
+            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(3)').style.backgroundColor = "green";
         }
 
         let STP2 = calculerSTP(valeursEntrees.Temperature[1], valeursEntrees.ABS[1]);
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else
         {
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(4)').style.backgroundColor = "white";
+            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(4)').style.backgroundColor = "green";
         }
 
         if(valeursEntrees.ABS[2] > 851)
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else
         {
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(4)').style.backgroundColor = "white";
+            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(4)').style.backgroundColor = "green";
         }
 
         let STP3 = calculerSTP(valeursEntrees.Temperature[2], valeursEntrees.ABS[2]);
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else
         {
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(5)').style.backgroundColor = "white";
+            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(5)').style.backgroundColor = "green";
         }
 
         if(valeursEntrees.ABS[3] > 851)
@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else
         {
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(5)').style.backgroundColor = "white";
+            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(5)').style.backgroundColor = "green";
         }
 
         let STP4 = calculerSTP(valeursEntrees.Temperature[3], valeursEntrees.ABS[3]);
