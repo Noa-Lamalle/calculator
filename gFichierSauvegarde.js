@@ -34,9 +34,9 @@ export function lireFichier(cle, callback) {
             Orthophosphate: 1,
             Temperature: [0, 0, 0, 0],
             ABS: [0, 0, 0, 0],
-            mL: 200,
-            tare: 0.1067,
-            poids: 0.1082
+            mL: [0, 0, 0, 0],
+            tare: [0, 0, 0, 0],
+            poids: [0, 0, 0, 0]
         };
         ecrireFichier(cle, valeursParDefaut);
         if (callback) callback(valeursParDefaut);
