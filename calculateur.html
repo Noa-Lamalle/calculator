@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="main.js" defer></script>
+    <script type="module" src="calculator.js" defer></script>
+    <script type="module" src="gFichierSauvegarde.js" defer></script>
+    <title>Calculator LSI / CPI / RSI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .container {
+            width: 400px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .input-group input {
+            flex: 1;
+            margin-left: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .result-table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .result-table th, .result-table td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .result-table th {
+            background-color: #f0f0f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 5px;
+            font-size: 12px;
+        }
+
+        table th {
+            background-color: #f0f0f0;
+        }
+
+        .table-title {
+            font-size: 14px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        input.table-input {
+            width: 100%;
+            border: none;
+            text-align: center;
+            background-color: transparent;
+            font-size: 12px;
+        }
+
+        input.table-input:focus {
+            outline: none;
+            background-color: #e8f0fe;
+        }
+
+        .input-group button {
+            display: block;
+            margin: 0 auto; /* Centre le bouton horizontalement */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .input-group button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>Calculateur LSI / CPI / RSI</h1>
+
+        <div class="input-group">
+            <label for="ph">pH</label>
+            <input type="text" id="ph" placeholder="µS/cm" value=""> 
+        </div>
+        <div class="input-group">
+            <label for="conductivity">Conductivity</label>
+            <input type="text" id="conductivity" placeholder="µS/cm">
+        </div>
+        <div class="input-group">
+            <label for="hardness">Ca Hardness</label>
+            <input type="text" id="hardness" placeholder="ppm CaCO3">
+        </div>
+        <div class="input-group">
+            <label for="alkalinity">M Alkalinity</label>
+            <input type="text" id="alkalinity" placeholder="ppm CaCO3">
+        </div>
+        <div class="input-group">
+            <label for="temperature">Skin Temperature</label>
+            <input type="text" id="temperature" placeholder="°C">
+        </div>
+        <div class="input-group">
+            <label for="phosphate">Ortho-phosphate</label>
+            <input type="text" id="phosphate" placeholder="ppm PO4">
+        </div>
+
+        <div class="input-group">
+            <button id="calculer">Calculer</button>
+        </div>
+
+        <table class="result-table">
+            <tr>
+                <th>Résultat</th>
+                <th>Valeur</th>
+            </tr>
+            <tr>
+                <td>L.S.I.</td>
+                <td></td> // Valeur de LSI
+            </tr>
+            <tr>
+                <td>C.P.I.</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>R.S.I.</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>TAC &lt; 100</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>TAC &gt; 100</td>
+                <td></td>
+            </tr>
+        </table>
+
+        <div class="table-title">Tableau STP :</div>
+        <table class="table-stp">
+            <tr>
+                <th>520nm</th>
+                <th>STP</th>
+                <th>STP</th>
+                <th>STP</th>
+                <th>STP</th>
+            </tr>
+            <tr>
+                <th>T°</th>
+                <td><input type="text" id="temperature1" class="table-input" placeholder="0"></td>
+                <td><input type="text" id="temperature2" class="table-input" placeholder="0"></td>
+                <td><input type="text" id="temperature3" class="table-input" placeholder="0"></td>
+                <td><input type="text" id="temperature4" class="table-input" placeholder="0"></td>
+            </tr>
+            <tr>
+                <th>ABS</th>
+                <td><input type="text" id="abs1" class="table-input" placeholder="0"></td>
+                <td><input type="text" id="abs2" class="table-input" placeholder="0"></td>
+                <td><input type="text" id="abs3" class="table-input" placeholder="0"></td>
+                <td><input type="text" id="abs4" class="table-input" placeholder="0"></td>
+            </tr>
+            <tr>
+                <th>STP</th>
+                <td id = "STP1"></td>
+                <td id = "STP2"></td>
+                <td id = "STP3"></td>
+                <td id = "STP4"></td>
+            </tr>
+        </table>
+
+        <div class="table-title">Tableau MES :</div>
+        <table>
+            <tr>
+                <th></th>
+                <th>MES</th>
+                <th>MES</th>
+                <th>MES</th>
+                <th>MES</th>
+            </tr>
+            <tr>
+                <td>mL</td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+            </tr>
+            <tr>
+                <td>Tare</td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+            </tr>
+            <tr>
+                <td>Poids</td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+                <td><input type="text" class="table-input" placeholder="0"></td>
+            </tr>
+            <tr>
+                <td>MES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
