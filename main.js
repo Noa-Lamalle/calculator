@@ -116,24 +116,51 @@ document.addEventListener("DOMContentLoaded", () => {
         const tac2Cell = document.querySelector('.result-table tr:nth-child(6) td:nth-child(2)');
         tac2Cell.textContent = round(TAC2, 2).toFixed(2);
 
-        if(valeursEntrees.Temperature[0] < 15.6 || valeursEntrees.Temperature[0] > 26.6)
+        if((valeursEntrees.Temperature[0] < 15.6 || valeursEntrees.Temperature[0] > 26.6) || (valeursEntrees.Temperature[1] < 15.6 || valeursEntrees.Temperature[1] > 26.6) || 
+           (valeursEntrees.Temperature[2] < 15.6 || valeursEntrees.Temperature[2] > 26.6) || (valeursEntrees.Temperature[3] < 15.6 || valeursEntrees.Temperature[3] > 26.6))
         {
             alert("La température doit être entre 15.6 et 26.6");
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(2)').style.backgroundColor = "red";
+            if (valeursEntrees.Temperature[0] < 15.6 || valeursEntrees.Temperature[0] > 26.6) document.querySelector('.table-stp tr:nth-child(2) td:nth-child(2)').style.backgroundColor = "red";
+            else document.querySelector('.table-stp tr:nth-child(2) td:nth-child(2)').style.backgroundColor = "green";
+
+            if (valeursEntrees.Temperature[1] < 15.6 || valeursEntrees.Temperature[1] > 26.6) document.querySelector('.table-stp tr:nth-child(2) td:nth-child(3)').style.backgroundColor = "red";
+            else document.querySelector('.table-stp tr:nth-child(2) td:nth-child(3)').style.backgroundColor = "green";
+
+            if (valeursEntrees.Temperature[2] < 15.6 || valeursEntrees.Temperature[2] > 26.6) document.querySelector('.table-stp tr:nth-child(2) td:nth-child(4)').style.backgroundColor = "red";
+            else document.querySelector('.table-stp tr:nth-child(2) td:nth-child(4)').style.backgroundColor = "green";
+
+            if (valeursEntrees.Temperature[3] < 15.6 || valeursEntrees.Temperature[3] > 26.6) document.querySelector('.table-stp tr:nth-child(2) td:nth-child(5)').style.backgroundColor = "red";
+            else document.querySelector('.table-stp tr:nth-child(2) td:nth-child(5)').style.backgroundColor = "green";
         }
         else
         {
             document.querySelector('.table-stp tr:nth-child(2) td:nth-child(2)').style.backgroundColor = "green";
+            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(3)').style.backgroundColor = "green";
+            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(4)').style.backgroundColor = "green";
+            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(5)').style.backgroundColor = "green";
         }
 
-        if(valeursEntrees.ABS[0] > 851)
+        if(valeursEntrees.ABS[0] > 851 || valeursEntrees.ABS[1] > 851 || valeursEntrees.ABS[2] > 851 || valeursEntrees.ABS[3] > 851)
         {
             alert("L'ABS doit être inférieur à 851");
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(2)').style.backgroundColor = "red";
+            if(valeursEntrees.ABS[0] > 851) document.querySelector('.table-stp tr:nth-child(3) td:nth-child(2)').style.backgroundColor = "red";
+            else document.querySelector('.table-stp tr:nth-child(3) td:nth-child(2)').style.backgroundColor = "green";
+
+            if(valeursEntrees.ABS[1] > 851) document.querySelector('.table-stp tr:nth-child(3) td:nth-child(3)').style.backgroundColor = "red";
+            else document.querySelector('.table-stp tr:nth-child(3) td:nth-child(3)').style.backgroundColor = "green";
+
+            if(valeursEntrees.ABS[2] > 851) document.querySelector('.table-stp tr:nth-child(3) td:nth-child(4)').style.backgroundColor = "red";
+            else document.querySelector('.table-stp tr:nth-child(3) td:nth-child(4)').style.backgroundColor = "green";
+
+            if(valeursEntrees.ABS[3] > 851) document.querySelector('.table-stp tr:nth-child(3) td:nth-child(5)').style.backgroundColor = "red";
+            else document.querySelector('.table-stp tr:nth-child(3) td:nth-child(5)').style.backgroundColor = "green";
         }
         else
         {
             document.querySelector('.table-stp tr:nth-child(3) td:nth-child(2)').style.backgroundColor = "green";
+            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(3)').style.backgroundColor = "green";
+            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(4)').style.backgroundColor = "green";
+            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(5)').style.backgroundColor = "green";
         }
         
 
@@ -141,77 +168,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const stpCell1 = document.querySelector('.table-stp tr:nth-child(4) td:nth-child(2)');
         stpCell1.textContent = round(STP1, 2).toFixed(2);
 
-        if(valeursEntrees.Temperature[1] < 15.6 || valeursEntrees.Temperature[1] > 26.6)
-        {
-            alert("La température doit être entre 15.6 et 26.6");
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(3)').style.backgroundColor = "red";
-        }
-        else
-        {
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(3)').style.backgroundColor = "green";
-        }
-
-        if(valeursEntrees.ABS[1] > 851)
-        {
-            alert("L'ABS doit être inférieur à 851");
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(3)').style.backgroundColor = "red";
-        }
-        else
-        {
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(3)').style.backgroundColor = "green";
-        }
-
         let STP2 = calculerSTP(valeursEntrees.Temperature[1], valeursEntrees.ABS[1]);
         const stpCell2 = document.querySelector('.table-stp tr:nth-child(4) td:nth-child(3)');
         stpCell2.textContent = round(STP2, 2).toFixed(2);
-
-        if(valeursEntrees.Temperature[2] < 15.6 || valeursEntrees.Temperature[2] > 26.6)
-        {
-            alert("La température doit être entre 15.6 et 26.6");
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(4)').style.backgroundColor = "red";
-        }
-        else
-        {
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(4)').style.backgroundColor = "green";
-        }
-
-        if(valeursEntrees.ABS[2] > 851)
-        {
-            alert("L'ABS doit être inférieur à 851");
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(4)').style.backgroundColor = "red";
-        }
-        else
-        {
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(4)').style.backgroundColor = "green";
-        }
 
         let STP3 = calculerSTP(valeursEntrees.Temperature[2], valeursEntrees.ABS[2]);
         const stpCell3 = document.querySelector('.table-stp tr:nth-child(4) td:nth-child(4)');
         stpCell3.textContent = round(STP3, 2).toFixed(2);
 
-        if(valeursEntrees.Temperature[3] < 15.6 || valeursEntrees.Temperature[3] > 26.6)
-        {
-            alert("La température doit être entre 15.6 et 26.6");
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(5)').style.backgroundColor = "red";
-        }
-        else
-        {
-            document.querySelector('.table-stp tr:nth-child(2) td:nth-child(5)').style.backgroundColor = "green";
-        }
-
-        if(valeursEntrees.ABS[3] > 851)
-        {
-            alert("L'ABS doit être inférieur à 851");
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(5)').style.backgroundColor = "red";
-        }
-        else
-        {
-            document.querySelector('.table-stp tr:nth-child(3) td:nth-child(5)').style.backgroundColor = "green";
-        }
-
         let STP4 = calculerSTP(valeursEntrees.Temperature[3], valeursEntrees.ABS[3]);
         const stpCell4 = document.querySelector('.table-stp tr:nth-child(4) td:nth-child(5)');
         stpCell4.textContent = round(STP4, 2).toFixed(2);
+
 
 
         let MES1 = calculerMES(valeursEntrees.mL[0], valeursEntrees.tare[0], valeursEntrees.poids[0]);
@@ -231,5 +199,3 @@ document.addEventListener("DOMContentLoaded", () => {
         mesCell4.textContent = round(MES4, 2).toFixed(2);
     });
 });
-
-

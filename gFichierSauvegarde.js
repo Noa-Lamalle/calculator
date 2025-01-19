@@ -26,17 +26,17 @@ export function lireFichier(cle, callback) {
     } else {
         // Si les données n'existent pas dans le localStorage, on crée un jeu de valeurs par défaut
         const valeursParDefaut = {
-            pH: 7.04,
-            Conductivity: 2380,
-            CA_Hardness: 632,
-            M_Alkalinity: 20,
-            Skin_Temperature: 80,
-            Orthophosphate: 1,
-            Temperature: [0, 0, 0, 0],
-            ABS: [0, 0, 0, 0],
-            mL: [0, 0, 0, 0],
-            tare: [0, 0, 0, 0],
-            poids: [0, 0, 0, 0]
+            pH: 0,
+            Conductivity: 0,
+            CA_Hardness: 0,
+            M_Alkalinity: 0,
+            Skin_Temperature: 0,
+            Orthophosphate: 0,
+            Temperature: [0,0,0,0],
+            ABS: [0,0,0,0],
+            mL: [0,0,0,0],
+            tare: [0,0,0,0],
+            poids: [0,0,0,0],
         };
         ecrireFichier(cle, valeursParDefaut);
         if (callback) callback(valeursParDefaut);
